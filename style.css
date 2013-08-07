@@ -1,0 +1,28 @@
+body {
+	-webkit-animation: degrade 0s ease;
+	-moz-animation: degrade 0s ease;
+	-ms-animation: degrade 0s ease;
+	-o-animation: degrade 0s ease;
+	animation: degrade 0s ease;
+}
+/* animation */
+@-webkit-keyframes degrade {
+	0% { background-color: #519c61; }
+	100% {background-color: #c5232e;}
+}
+@-moz-keyframes degrade {
+	0% { background-color: #519c61; }
+	100% {background-color: #c5232e;}
+}
+@-ms-keyframes degrade {
+	0% { background-color: #519c61; }
+	100% {background-color: #c5232e;}
+}
+@-o-keyframes degrade {
+	0% { background-color: #519c61; }
+	100% {background-color: #c5232e;}
+}
+@keyframes degrade {
+	0% { background-color: #519c61; }
+	100% {background-color: #c5232e;}
+}
