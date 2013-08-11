@@ -60,10 +60,15 @@
                 clearTimeout(t);
             }
 
+            function colorChange() {
+                document.body.style.webkitAnimationDuration = total;
+            }
             start = document.getElementById('start');
             pause = document.getElementById('pause');
             start.addEventListener('click', startTimer, false);
+            start.addEventListener('click', colorChange, false);
             pause.addEventListener('click', pauseTimer, false);
+
 
         </script>
     </body>

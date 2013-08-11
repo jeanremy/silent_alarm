@@ -1,28 +1,29 @@
-body {
-	-webkit-animation: degrade 0s ease;
-	-moz-animation: degrade 0s ease;
-	-ms-animation: degrade 0s ease;
-	-o-animation: degrade 0s ease;
-	animation: degrade 0s ease;
+body .enabled {
+	background-color: #519c61;
+	-webkit-animation: colorChange ease;
+	-moz-animation: colorChange ease;
+	-ms-animation: colorChange ease;
+	-o-animation: colorChange ease;
+	animation: colorChange ease;
 }
 /* animation */
-@-webkit-keyframes degrade {
+@-webkit-keyframes colorChange {
 	0% { background-color: #519c61; }
 	100% {background-color: #c5232e;}
 }
-@-moz-keyframes degrade {
+@-moz-keyframes colorChange {
 	0% { background-color: #519c61; }
 	100% {background-color: #c5232e;}
 }
-@-ms-keyframes degrade {
+@-ms-keyframes colorChange {
 	0% { background-color: #519c61; }
 	100% {background-color: #c5232e;}
 }
-@-o-keyframes degrade {
+@-o-keyframes colorChange {
 	0% { background-color: #519c61; }
 	100% {background-color: #c5232e;}
 }
-@keyframes degrade {
+@keyframes colorChange {
 	0% { background-color: #519c61; }
 	100% {background-color: #c5232e;}
 }
