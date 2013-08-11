@@ -61,14 +61,49 @@
             }
 
             function colorChange() {
-                document.body.style.webkitAnimationDuration = total;
+                document.body.style.webkitAnimationDuration = total + "s";//Faire persister la classe pour fin de l'anim!!!
             }
             start = document.getElementById('start');
             pause = document.getElementById('pause');
             start.addEventListener('click', startTimer, false);
             start.addEventListener('click', colorChange, false);
             pause.addEventListener('click', pauseTimer, false);
+            
+            /*Experiments for auto prefix
+            var 
+                anim = document.body,
+                pfx = ["webkit", "moz", "MS", "o", ""];
 
+            // button click event
+            start.addEventListener("click", ToggleAnimation, false);
+
+            // animation listener events
+            PrefixedEvent(anim, "AnimationDuration", AnimationListener);
+            PrefixedEvent(anim, "AnimationIteration", AnimationListener);
+            PrefixedEvent(anim, "AnimationEnd", AnimationListener);
+
+
+            // apply prefixed event handlers
+            function PrefixedEvent(element, type, callback) {
+                for (var p = 0; p < pfx.length; p++) {
+                    if (!pfx[p]) type = type.toLowerCase();
+                    element.addEventListener(pfx[p]+type, callback, false);
+                }
+            }
+
+            // handle animation events
+            function AnimationListener(e) {
+                if (e.type.toLowerCase().indexOf("animationend") >= 0) {
+                    ToggleAnimation();
+                }
+            }
+
+            // start/stop animation
+            function ToggleAnimation(e) {
+                var on = (anim.className != "");
+                anim.className = (on ? "" : "enable");
+                if (e) e.preventDefault();
+            };*/
 
         </script>
     </body>

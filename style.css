@@ -1,4 +1,4 @@
-body .enabled {
+body.enable {
 	background-color: #519c61;
 	-webkit-animation: colorChange ease;
 	-moz-animation: colorChange ease;
