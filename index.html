@@ -15,10 +15,56 @@
     </head>
     <body>
         <div id="timer">
-			<input id="minutes" type="text">
-			<input id="seconds" type="text">.
+            <form>
+                <input id="hour" type="number" value="0">
+    			<input id="minutes" type="number" value="10">
+    			<input id="seconds" type="number" value="5">
+            </form>
 		</div>
-		<button onclick="stop()">Stop</button>
-		<button onclick="countdown()">Restart</button>
+		<button id="pause">Stop</button>
+		<button id="start">Start</button>
+        <script type="text/javascript">
+
+            function getSeconds (){
+                minutes = parseInt(document.getElementById('minutes').value);
+                seconds = parseInt(document.getElementById("seconds").value);
+                return (minutes * 60) + seconds; 
+            }
+
+            function displayTime() {
+                mins = Math.floor(total / 60);
+                secs = Math.floor(total - (mins * 60));
+                if (mins < 10) {
+                    mins = '0'+ mins;
+                }
+                if (secs < 10) {
+                    secs = '0'+ secs;
+                }
+                document.getElementById('minutes').value = mins;
+                document.getElementById('seconds').value = secs;
+            }
+
+            function startTimer () {
+                total = getSeconds();
+                if (total > 0) {
+                    total--;
+                    displayTime();
+                    t = setTimeout('startTimer()', 1000);
+                }
+                else {
+                    alert('Fini!');
+                }                
+            }
+
+            function pauseTimer() {
+                clearTimeout(t);
+            }
+
+            start = document.getElementById('start');
+            pause = document.getElementById('pause');
+            start.addEventListener('click', startTimer, false);
+            pause.addEventListener('click', pauseTimer, false);
+
+        </script>
     </body>
 </html>

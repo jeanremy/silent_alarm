@@ -1,11 +1,12 @@
-var secs = 10;
+
+
 var t;
-function degrade() {
-	document.body.style.webkitTransitionDuration = "10s";
-}
-function countdown() {
+
+
+
+
+/*function countdown() {
 	t = setTimeout('decrement()',1000);
-	degrade();
 }
 
 function pause() {
@@ -40,6 +41,7 @@ function getminutes() {
 function getseconds() {
 	// take mins remaining (as seconds) away from total seconds remaining
 	return secs-Math.round(mins *60);
-}
+}*/
 
-countdown();
+
+
