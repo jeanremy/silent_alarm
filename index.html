@@ -14,15 +14,15 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
     </head>
     <body>
-        <div id="timer">
-            <form>
+        <form>
+            <fieldset>
                 <input type="text" id="hour" size="2" value="00"><p>:</p>
     			<input type="text" id="minutes" size="2" value="00"><p>:</p>
     			<input type="text" id="seconds" size="2" value="03">
-                <input type="submit" id="start" value="Start">
-                <input type="submit" id="pause" value="Stop">
-            </form>
-		</div>
+            </fieldset>
+            <input type="submit" id="start" value="Start">
+            <input type="submit" id="pause" value="Stop">
+        </form>
         
         <script type="text/javascript">
 
@@ -43,6 +43,7 @@
                 }
                 document.getElementById('minutes').value = mins;
                 document.getElementById('seconds').value = secs;
+
             }
 
             function startTimer () {
@@ -59,7 +60,7 @@
             }
 
             function colorChange() {
-                document.body.style.webkitAnimationDuration = total + "s";
+                document.body.style.webkitAnimationDuration = total + 1 + "s";
             }
             start = document.getElementById('start');
             pause = document.getElementById('pause');
