@@ -52,12 +52,11 @@ input[type="submit"] {
 }
 
 .enable input[type="submit"] {
-	border: 1px solid #fff;
-	-webkit-animation: borderChange ease;
-	-moz-animation: borderChange ease;
-	-ms-animation: borderChange ease;
-	-o-animation: borderChange ease;
-	animation: borderChange ease;
+	-webkit-animation: borderChange;
+	-moz-animation: borderChange;
+	-ms-animation: borderChange;
+	-o-animation: borderChange;
+	animation: borderChange;
 }
 /* animation */
 @-webkit-keyframes borderChange {

@@ -16,7 +16,7 @@
     <body>
         <form>
             <fieldset>
-                <input type="text" id="hour" size="2" value="00"><p>:</p>
+                <input type="text" id="hours" size="2" value="00"><p>:</p>
     			<input type="text" id="minutes" size="2" value="00"><p>:</p>
     			<input type="text" id="seconds" size="2" value="03">
             </fieldset>
@@ -27,14 +27,16 @@
         <script type="text/javascript">
 
             function getSeconds (){
+                hours = parseInt(document.getElementById('hours').value);
                 minutes = parseInt(document.getElementById('minutes').value);
                 seconds = parseInt(document.getElementById("seconds").value);
-                return (minutes * 60) + seconds; 
+                return (hours * 3600) + (minutes * 60) + seconds; 
             }
 
             function displayTime() {
-                mins = Math.floor(total / 60);
-                secs = Math.floor(total - (mins * 60));
+                hrs = Math.floor(total / 3600);
+                mins = Math.floor((total - (hrs * 3600)) / 60) ;
+                secs = Math.floor(total - (hrs * 3600) - (mins * 60));
                 if (mins < 10) {
                     mins = '0'+ mins;
                 }
