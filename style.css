@@ -1,29 +1,93 @@
+
+/*********Quick reset********************/
+html, body {
+	margin: 0;
+	padding: 0;
+}
+html {font-size: 62.5%;}
+
+* {
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+}
+
+form,
+fieldset {
+	border: none;
+}
+
+body {
+	font-size: 1.4em; /* equiv 14px */
+	background-color: #fff;
+	color: #000;
+}
+input, p {
+	background: none; 
+	border: none; 
+	display: inline-block; 
+	text-align: center;
+}
+
+input:hover, input:focus, input:active {
+	border: none;
+}
+
+input[type="text"], p {
+	font-size: 7.1428em;
+}
+
+input[type="submit"] {
+	cursor: pointer;
+	border: 1px solid #000;
+	border-radius: 3px;
+	font-size: 2.1428em;
+	display: block;
+}
+
+/**************Quick Layout**************/
+
+/*Centering content*/
+form {
+	position: absolute;
+	margin: auto;
+	width: 100%;
+	height: 50%;
+	top: 0; left: 0; bottom: 0; right: 0;
+}
+
+
+
+/*************Animation******************/
 body.enable {
-	background-color: #519c61;
+	background-color: #000;
+	color: #fff;
 	-webkit-animation: colorChange ease;
 	-moz-animation: colorChange ease;
 	-ms-animation: colorChange ease;
 	-o-animation: colorChange ease;
 	animation: colorChange ease;
+	
 }
 /* animation */
 @-webkit-keyframes colorChange {
-	0% { background-color: #519c61; }
-	100% {background-color: #c5232e;}
+	0% {background-color: #fff; color: #000;}
+	100% {background-color: #000; color: #fff!important;}
 }
 @-moz-keyframes colorChange {
-	0% { background-color: #519c61; }
-	100% {background-color: #c5232e;}
+	0% {background-color: #fff; color: #000;}
+	100% {background-color: #000; color: #fff;}
 }
 @-ms-keyframes colorChange {
-	0% { background-color: #519c61; }
-	100% {background-color: #c5232e;}
+	0% {background-color: #fff; color: #000;}
+	100% {background-color: #000; color: #fff;}
 }
 @-o-keyframes colorChange {
-	0% { background-color: #519c61; }
-	100% {background-color: #c5232e;}
+	0% {background-color: #fff; color: #000;}
+	100% {background-color: #000; color: #fff;}
 }
 @keyframes colorChange {
-	0% { background-color: #519c61; }
-	100% {background-color: #c5232e;}
+	0% {background-color: #fff; color: #000;}
+	100% {background-color: #000; color: #fff!important;}
 }
