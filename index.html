@@ -11,17 +11,17 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" type="text/css" href="style.css">
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,700' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <form>
             <fieldset>
-                <input type="text" id="hours" size="2" value="00"><p>:</p>
-    			<input type="text" id="minutes" size="2" value="00"><p>:</p>
-    			<input type="text" id="seconds" size="2" value="03">
+                <input type="text" id="hours" size="1" value="00"><p>:</p>
+    			<input type="text" id="minutes" size="1" value="00"><p>:</p>
+    			<input type="text" id="seconds" size="1" value="03">
             </fieldset>
             <input type="submit" id="start" value="Start">
-            <input type="submit" id="pause" value="Stop">
+            <input type="submit" id="pause" value="Stop" class="hidden">
         </form>
         
         <script type="text/javascript">
@@ -50,19 +50,35 @@
 
             function startTimer () {
                 total = getSeconds();
+                start.style.display = "none";
+                pause.style.display = "block";                
+                if (total == 0) {
+                    alert('Please enter a correct number');
+                }    
+                else {
+                    decount();
+                }      
+            }
+
+            function decount() {
                 if (total > 0) {
                     total--;
                     displayTime();
-                    t = setTimeout('startTimer()', 1000);
-                }             
+                    t = setTimeout('decount()', 1000);
+                }
             }
 
             function pauseTimer() {
+                pause.style.display = "none";
+                start.style.display = "block";
                 clearTimeout(t);
             }
 
             function colorChange() {
-                document.body.style.webkitAnimationDuration = total + 1 + "s"; // pour eviter bug
+                if (total != 0) {
+                    document.body.style.webkitAnimationDuration = total + 1 + "s"; // pour eviter bug
+                    document.body.style.animationDuration = total + 1 + "s"; // pour eviter bug
+                }
             }
             start = document.getElementById('start');
             pause = document.getElementById('pause');
@@ -72,33 +88,11 @@
             
             //Experiments for auto prefix
             //Taken from http://www.sitepoint.com/css3-animation-javascript-event-handlers/
-            var 
-                anim = document.body,
-                pfx = ["webkit", "moz", "MS", "o", ""];
+            var anim = document.body;
 
             // button click event
             start.addEventListener("click", ToggleAnimation, false);
             pause.addEventListener("click", ToggleAnimation, false);
-
-            /*Unnecessary
-            // animation listener events
-            //PrefixedEvent(anim, "AnimationDuration", AnimationListener);
-
-            
-            // apply prefixed event handlers
-            function PrefixedEvent(element, type, callback) {
-                for (var p = 0; p < pfx.length; p++) {
-                    if (!pfx[p]) type = type.toLowerCase();
-                    element.addEventListener(pfx[p]+type, callback, false);
-                }
-            }
-
-            // handle animation events
-            function AnimationListener(e) {
-                if (e.type.toLowerCase().indexOf("animationend") >= 0) {
-                    ToggleAnimation();
-                }
-            }*/
 
             // start/stop animation
             function ToggleAnimation(e) {
