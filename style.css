@@ -15,39 +15,78 @@ html {font-size: 62.5%;}
 	font-weight: 300;
 }
 
+a {text-decoration: none; color: rgba(255, 255, 255, .8);}
+
+
+body {
+	font-size: 1.4em; /* equiv 14px */
+	background-color: #519c61;
+	color: rgba(255, 255, 255, .5);
+}
+
+p {
+	font-size: .8571em;	
+	margin: 0;
+	color: #fff;
+}
+
+/************Title**************/
+h1 {
+	max-width: 800px;
+	margin: 0 auto;
+}
+ 
+ /***********Form***************/
 form,
 fieldset {
 	border: none;
 }
 
-body {
-	font-size: 1.4em; /* equiv 14px */
-	background-color: #519c61;
-	color: #fff;
-	display: table;
+form {
+	text-align: center;
+	margin-top: 10%;
 }
-input, p {
-	background: none; 
-	border: none; 
+fieldset {
+	margin-bottom: 5em;
+}
+
+fieldset > div, fieldset p {
 	display: inline-block; 
 	text-align: center;
-	color: inherit;
+	position: relative;
 }
 
 input:hover, input:focus, input:active {
 	border: none;
 }
 
-input[type="text"], p {
-	font-size: 7.1428em;
+input[type="text"] {
+	border: none;
+	border-bottom: 4px solid #fff;
+	color: inherit;
+	text-align: center;
+}
+
+label {
+	position: absolute;
+	bottom: -2em;
+	text-align: center;
+	width: 100%;
+	left: 0;
+	font-size: 1.5em;
+}
+
+input[type="text"], form p {
+	background: none; 
+	
+	font-size: 7.7857em;
 	font-weight: 700;
-	text-shadow: -5px 5px 1px rgba(0, 0, 0, .5);
-	filter: dropshadow(color=#000000, offx=-5, offy=5);
+	
 }
 
 input[type="submit"] {
 	cursor: pointer;
-	border: 1px solid #fff;
+	border: 2px solid #fff;
 	border-radius: 5px;
 	font-size: 2.1428em;
 	display: block;
@@ -55,15 +94,12 @@ input[type="submit"] {
 	padding: .3em 1em;
 	-webkit-transition: all 200ms ease;
 	transition: all 200ms ease;
+	color: #fff;
+	background: transparent;
 }
 
 input[type="submit"]:hover {
-	color: #519c61;
-	background-color: #fff;
-}
-input[type="submit"] + input[type="submit"]:hover {
-	color: #c5232e;
-	background-color: #fff;
+	background-color: rgba(0, 0, 0, .5);
 }
 
 input.hidden {
@@ -71,13 +107,14 @@ input.hidden {
 }
 
 
-/**************Quick Layout**************/
+/**************Infos**************/
 
-/*Centering content*/
-form {
-	display: table-cell;
-	vertical-align: middle;
+.infos {
+	position: absolute;
+	bottom: 1em;
 	text-align: center;
+	left: 50%;
+	margin-left: -100px;
 }
 
 
