@@ -63,19 +63,20 @@
             }
 
             function startTimer () {
-                total = getSeconds();
-                start.style.display = "none";
-                pause.style.display = "block";                
+                total = getSeconds();              
                 if (total == 0) {
                     alert('Please enter a correct number');
                 }    
                 else {
                     decount();
                     colorChange();
+                    start.style.display = "none";
+                    pause.style.display = "block";  
                 }      
             }
 
             function decount() {
+                total = getSeconds();
                 if (total > 0) {
                     total--;
                     displayTime();
