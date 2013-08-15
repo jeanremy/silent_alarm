@@ -63,12 +63,12 @@
             }
 
             function startTimer () {
-                pause.value = "Stop";
                 total = getSeconds();              
                 if (total == 0) {
                     alert('Please enter a correct number');
                 }    
-                else if (total > 0) {
+                else if (total > 0) {             
+                    pause.value = "Stop";
                     decount();
                     start.style.display = "none";
                     pause.style.display = "block";  
