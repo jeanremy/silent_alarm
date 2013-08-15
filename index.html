@@ -63,16 +63,19 @@
             }
 
             function startTimer () {
+                pause.value = "Stop";
                 total = getSeconds();              
                 if (total == 0) {
                     alert('Please enter a correct number');
                 }    
-                else {
+                else if (total > 0) {
                     decount();
-                    colorChange();
                     start.style.display = "none";
                     pause.style.display = "block";  
-                }      
+                }    
+                else {
+                    alert('N\'entrez que des chiffres');
+                }  
             }
 
             function decount() {
@@ -81,6 +84,9 @@
                     total--;
                     displayTime();
                     t = setTimeout('decount()', 1000);
+                }
+                else if (total == 0) {
+                    pause.value = "Restart";
                 }
             }
 
@@ -113,8 +119,18 @@
             function ToggleAnimation(e) {
                 var on = (anim.className != "");
                 anim.className = (on ? "" : "enable");
+                colorChange();
                 if (e) e.preventDefault();
             };
+
+            function bodyClass() {
+                if (anim.className == "") {
+                    anim.className = "enable";
+                }
+                else {
+                    anim.className = "";
+                }
+            }
 
         </script>
     </body>
