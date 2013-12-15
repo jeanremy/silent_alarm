@@ -22,14 +22,18 @@ function displayTime() {
     hrs = Math.floor(total / 3600);
     mins = Math.floor((total - (hrs * 3600)) / 60) ;
     secs = Math.floor(total - (hrs * 3600) - (mins * 60));
+    if (hrs < 10) {
+        mins = '0'+ hrs;
+    }
     if (mins < 10) {
         mins = '0'+ mins;
     }
     if (secs < 10) {
         secs = '0'+ secs;
     }
-    document.getElementById('minutes').value = mins;
-    document.getElementById('seconds').value = secs;
+    hours.value = hrs;
+    minutes.value = mins;
+    seconds.value = secs;
 
 }
 
