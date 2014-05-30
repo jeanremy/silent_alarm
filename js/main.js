@@ -1,110 +1,182 @@
-/*
-    Variables declarations
-    ======================
-*/
+(function() {
+    /*****************************
+        Variables declarations
+    ******************************/
 
-hours = document.getElementById('hours');
-minutes = document.getElementById('minutes');
-seconds = document.getElementById('seconds');
-feedback = document.getElementById('feedback');
-start = document.getElementById('start');
-form = document.getElementById('countdown');
+    var $start       = $('#start'),
+        $form        = $('#form-timer'), 
+        $history     = $('#past-tasks');
 
 
-function getSeconds (){
-    var hrs = parseInt(hours.value);
-    var mins = parseInt(minutes.value);
-    var secs = parseInt(seconds.value);
-    return (hrs * 3600) + (mins * 60) + secs; 
-}
 
-function displayTime() {
-    hrs = Math.floor(total / 3600);
-    mins = Math.floor((total - (hrs * 3600)) / 60) ;
-    secs = Math.floor(total - (hrs * 3600) - (mins * 60));
-    if (hrs < 10) {
-        mins = '0'+ hrs;
+    /**************************
+        Record object
+    **************************/
+    function Record(number, title, time){
+        this.number         = number;
+        this.title          = title;
+        this.time           = time;
+        this.timestamp      = new Date();
+    };
+    Record.prototype.changeTitle = function(newTitle) {
+        this.title = newTitle;
+        this.store(this.number, this.title, this.time);
+    };
+    Record.prototype.display = function() {
+        var time =  this.displayTime(),
+            line = '<div class="item clearfix" data-storage="item_'+this.number+'">'+time+'<div class="delete icon-cross"></div><div class="edit icon-pencil"></div><textarea class="item-title" disabled="disabled">'+this.title+'</textarea></div>';
+        $history.prepend(line);
+    };
+    Record.prototype.store = function() {
+        var key     = 'item_'+this.number,
+            val     = JSON.stringify(this);
+        //console.log(val);
+        localStorage.setItem(key, val);
+    };
+    Record.prototype.displayTime = function() {
+        var hour        = Math.floor(this.time / 3600),
+            minute      = Math.floor((this.time - (hour * 3600)) / 60),
+            second      = Math.floor(this.time - (hour * 3600) - (minute * 60));
+
+        hour    += 'h';
+        minute  += 'm';
+        second  += 's';
+
+        return '<div class="item-time"><div class="hour">'+hour+'</div><div class="minutes">'+minute+'</div><div class="seconds">'+second+'</div></div>';
+    };
+    Record.prototype.deleteItem = function() {
+        localStorage.removeItem('item_'+this.number);
     }
-    if (mins < 10) {
-        mins = '0'+ mins;
-    }
-    if (secs < 10) {
-        secs = '0'+ secs;
-    }
-    hours.value = hrs;
-    minutes.value = mins;
-    seconds.value = secs;
 
-}
+    /**************************
+        Timer
+    **************************/
+    var timer = {
 
-function startTimer () {
-    total = getSeconds();              
-    if (total == 0) {
-        feedback.innerText='Please enter a correct number';
-    }    
-    else if (total > 0) {  
-        feedback.innerText='';
-        ToggleAnimation();
-        pause.value = "Stop";
-        decount();
-        start.style.display = "none";
-        pause.style.display = "block";  
-    }    
-    else {
-        feedback.innerText='Please enter a number';
-    }  
-}
+        total: 0,
+        count: null,
+        hours: $('#hours'),
+        minutes: $('#minutes'),
+        seconds: $('#seconds'),
+        title: $('#title'),
+        itemNumber: 0,
+        records: {},
 
-function decount() {
-    total = getSeconds();
-    if (total > 0) {
-        total--;
-        displayTime();
-        t = setTimeout('decount()', 1000);
-    }
-    else if (total == 0) {
-        pause.value = "Restart";
-    }
-}
 
-function pauseTimer() {
-    pause.style.display = "none";
-    start.style.display = "block";
-    clearTimeout(t);
-}
+        init: function() {
+            if(Modernizr.localstorage) {
+                if(localStorage.length != 0) {
 
-function colorChange() {
-    if (total != 0) {
-        document.body.style.webkitAnimationDuration = total + 1 + "s"; // pour eviter bug
-        document.body.style.animationDuration = total + 1 + "s"; // pour eviter bug
-    }
-}
-start = document.getElementById('start');
-pause = document.getElementById('pause');
-start.addEventListener('click', startTimer, false);
-pause.addEventListener('click', pauseTimer, false);
+                    for (var id in localStorage) {
+                        var item        = JSON.parse(localStorage[id]);
+                        this.itemNumber = item.number + 1; // to avoid duplication of item
 
-//Experiments for auto prefix
-//Taken from http://www.sitepoint.com/css3-animation-javascript-event-handlers/
-var anim = document.body;
+                        /* Records all timers as object Record in an attribute */
+                        this.records[id] = new Record(item.number, item.title, item.time);
+                        this.records[id].display();
+                        console.log(this.itemNumber);
+                    }
+                }
 
-// button click event
-start.addEventListener("click", ToggleAnimation, false);
-pause.addEventListener("click", ToggleAnimation, false);
+            } else {
+                alert('Votre navigateur est trop ancien. Vous devez le mettre à jour');
+            }
+        },
 
-// start/stop animation
-function ToggleAnimation(e) {
-    var on = (anim.className != "");
-    anim.className = (on ? "" : "enable");
-    colorChange();
-    if(e) {e.preventDefault();}
-};
+        setTime: function(hour, min, sec) {
+            timer.hours.text(hour);
+            timer.minutes.text(min);
+            timer.seconds.text(sec);
+        },
 
-function bodyClass() {
-    if (anim.className == "") {
-        anim.className = "enable";
-    }
-    else {
-        anim.className = "";
-    }
-}
+        launch: function() {
+            (function count(){
+                var hour        = Math.floor(timer.total / 3600),
+                    minute      = Math.floor((timer.total - (hour * 3600)) / 60),
+                    second      = Math.floor(timer.total - (hour * 3600) - (minute * 60));
+
+                timer.total++;
+
+                hour    = (hour < 10)? '0'+ hour:hour;
+                minute  = (minute < 10)? '0'+ minute:minute;
+                second  = (second < 10)? '0'+ second:second;
+
+
+                timer.setTime(hour, minute, second);
+                timer.count = setTimeout(function(){count();}, 1000);
+            })();
+                
+        },
+
+        save: function() {
+            clearTimeout(this.count);
+            var title           = this.title.val(),
+                id              = 'item_'+this.itemNumber;
+            console.log(this.itemNumber);
+            
+            // create a new Record, display and save it
+            this.records[id] = new Record(this.itemNumber, title, this.total);
+            this.records[id].display();
+            this.records[id].store();
+            //console.log(this.records);
+
+            // Reset form et inc ItemNumber
+            timer.setTime('00', '00', '00');
+            this.title.val('');
+            this.itemNumber++;
+        }
+    };
+
+    //localStorage.clear();
+    timer.init();
+
+    /*****************************
+        Listener on form submit
+    *****************************/
+    $form.on('submit', function(e) {
+        e.preventDefault();
+        if($start.hasClass('start')) {
+            $start.attr('class', 'stop').val('Stop');
+            timer.launch();
+        } else {
+            $start.attr('class', 'start').val('Start');
+            timer.save(); 
+        }
+        return false;
+    });
+
+    /****************************
+        UI rules
+    ****************************/
+    $('#expand').on('click', function() {
+        $(this).toggleClass('close');
+        $('.sidebar').toggleClass('active');
+    });
+
+    $(document).on('click', '.edit', function() {
+        var $this = $(this),
+            item  = $this.parent().attr('data-storage');
+
+        if($this.hasClass('active')) {
+            $this.removeClass('active');
+            $this.siblings('.item-title').attr('disabled', 'disabled');
+            console.log(item);
+            timer.records[item].changeTitle($this.siblings('.item-title').val());
+
+        } else {
+            $this.addClass('active');
+            $this.siblings('.item-title').removeAttr('disabled');
+        }
+    });
+
+    $(document).on('click', '.delete', function() {
+        var $this   = $(this),
+            item    = $this.parent().attr('data-storage');
+        $this.parent().fadeOut(200).remove();
+        timer.records[item].deleteItem();
+    });
+
+   
+    
+    
+})();

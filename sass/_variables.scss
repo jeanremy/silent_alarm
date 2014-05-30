@@ -1,0 +1,23 @@
+// VARIABLES
+
+// Colors
+$primary: #1d1e1f; // Gris mega foncé
+$secondary: #fff; // Blanc un peu cassé
+
+// Breakpoints
+$large: 960px;
+$medium: 768px;
+$small: 480px;
+
+// Fonts
+$source: 'Open Sans', sans-serif;
+
+:selection {
+  color: #fff;
+  background-color: #dd5b6a;
+}
+
+::-moz-selection {
+	color:#fff;
+	background-color: $primary;
+}

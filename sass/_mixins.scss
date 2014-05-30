@@ -1,0 +1,78 @@
+// MIXINS
+
+
+// Mixin to convert px to em - Use this way font-size: em(22);
+$browser-context: 14; 
+
+@function em($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}em
+}
+
+
+//Clearfix helpers
+.clearfix:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+
+//Clearfix helpers - Use this way @extend %clearfix;
+%clearfix {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}	
+}
+
+//Clearfix helpers - Use this way @include clearfix;
+@mixin clearfix() {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+// Fixed Grid system
+// Use this way : in a container, @include fixed-grid, child column must have col class;
+
+@mixin fixed-grid($cols, $gutter) {
+	@extend %clearfix;
+	margin: 0 -#{$gutter};
+	& > .col {
+		padding: 0 $gutter;
+		float: left;
+		width: (100% / $cols);
+		&:nth-child(#{$cols}n+1) {
+			clear: left;
+		}
+	}
+	@media (max-width:$small) {
+		float: none;
+		width: 100%;
+	}
+}
+
+
+// Mixed Grid system
+// Use this way : in a container, @include mixed-grid(12, 10px), child column must have col and col-number class;
+
+@mixin mixed-grid($cols, $gutter) {
+	@extend %clearfix;
+	margin: 0 -#{$gutter};
+	@each $col in $cols {
+		& > .col-#{$col} {
+			width: (100% / (12 / $col));
+		}
+	}		
+	& > .col {
+		padding: 0 $gutter;
+		float: left;
+		@media (max-width:$small) {
+			float: none;
+			width: 100%;
+		}
+	}
+}

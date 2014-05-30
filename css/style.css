@@ -98,7 +98,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-	background-color: rgba(0, 0, 0, .5);
+	background-color: rgba(0, 0, 0, .3);
 }
 
 input.hidden {
@@ -110,10 +110,22 @@ input.hidden {
 
 .infos {
 	position: absolute;
-	bottom: 1em;
+	top: 1em;
 	text-align: center;
-	left: 50%;
-	margin-left: -100px;
+	right: 1em;
+	cursor: pointer;
+}
+
+.infos:before {
+	content: "i";
+	display: block;
+	font-family: 'Times New Roman', serif;
+	font-style: italic;
+	background: rgba(0,0,0,.3);
+	border-radius: 50%;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
 }
 
 

@@ -1,0 +1,46 @@
+/*
+	COMMONS
+	=======
+*/
+
+.btn {
+	font-weight: 700;
+	font-family: $source;
+	text-transform: uppercase;
+	background-color: $primary;
+	color: #fff;
+	font-size: em(15);
+}
+
+.btn--black {
+	@extend .btn;
+	background-color: #fff;
+	color: $primary;
+}
+
+.btn--big {
+	@extend .btn;
+	display: block;
+	font-size: em(30);
+	text-align: center;
+}
+
+/* Sprite */
+.sprite {
+	background: url(../img/sprite.png);
+	@media 
+		only screen and (-webkit-min-device-pixel-ratio: 2),
+		only screen and (   min--moz-device-pixel-ratio: 2),
+		only screen and (     -o-min-device-pixel-ratio: 2/1),
+		only screen and (        min-device-pixel-ratio: 2),
+		only screen and (                min-resolution: 192dpi),
+		only screen and (                min-resolution: 2dppx) {
+			background: url(../img/sprite@2x.png);
+	}
+}
+
+
+/* Grid */
+.row {
+	@include mixed-grid(1 2 3 4 5 6 7 8 9 10 11 12, 15px)
+}

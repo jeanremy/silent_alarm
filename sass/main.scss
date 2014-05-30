@@ -1,0 +1,125 @@
+/*
+	Kickstart files for html/css project. Based on Kaelig documentation (blog.kaelig.fr) and on sass
+*/
+
+@import "variables";
+@import "mixins";
+@import "reset";
+@import "commons";
+@import "fonts";
+@import "typo";
+@import "forms";
+
+/*  GLOBAL
+	======  */
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+html {overflow-x: hidden;}
+
+body {
+	font-size: 1.4em; /* equiv 14px */
+	color: $primary;
+	-webkit-font-smoothing: antialiased;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+}
+
+p {
+	font-size: .8571em;	
+	margin: 0;
+}
+/*************************
+		Layout
+*************************/
+.container {
+	max-width: 640px;
+	margin: 0 auto;
+}
+
+
+/*************************
+		Sidebar
+*************************/
+#expand {
+	height: 60px;
+	line-height: 60px;
+	width: 60px;
+	position: absolute;
+	left: -60px;
+	top: 25px;
+	background-color: #1d1e1f;
+	cursor: pointer;
+}
+
+#expand.icon-arrow-left:before {
+	display: block;
+	
+	text-align: center;
+	font-size: 1.5em;
+	transition: transform 200ms ease;
+}
+
+#expand.close.icon-arrow-left:before {
+	transform: rotate(180deg);
+	transition: transform 200ms ease;
+}
+.sidebar {
+	background-color: #1d1e1f;
+	color: #fff;
+	width: 260px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	padding: em(30);
+	transform: translate3d(260px, 0 , 0);
+	transition: transform 200ms ease;
+	a{ color: #fff;}
+	.item {margin: em(20) 0;}
+	.item-time {
+		text-align: right;
+		float: left;
+		padding-right: 10px;
+		border-right: 1px solid #9e9e9e;
+		.hour {font-size: em(20);}
+		.minutes {font-size: em(18);}
+		.seconds {font-size: em(16);}
+	}
+	.item-title {
+		font-size: em(16);
+		width: auto;
+		padding-left: 10px;
+	}
+	.edit, .delete {
+		height: 15px;
+		width: 15px;
+		float: right;
+		cursor: pointer;
+	}
+}
+.sidebar.active {
+	transform: translate3d(0, 0 , 0);
+}
+
+
+
+/*************************
+		INFOS
+*************************/
+
+.infos {
+	position: absolute;
+	bottom: 30px;
+	text-align: right;
+	right: 15px;
+}
+
+
+
+@import "print";
+
+
+
