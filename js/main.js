@@ -110,7 +110,7 @@
 
         save: function() {
             clearTimeout(this.count);
-            var title           = this.title.val(),
+            var title           = (this.title.val())? this.title.val(): "sans titre",
                 id              = 'item_'+this.itemNumber;
             console.log(this.itemNumber);
             
@@ -124,6 +124,7 @@
             timer.setTime('00', '00', '00');
             this.title.val('');
             this.itemNumber++;
+            this.total = 0;
         }
     };
 
