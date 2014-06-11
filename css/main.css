@@ -334,6 +334,16 @@ body {
 .level1 {
 	text-align: center;
 	font-size: 3.57143em;
+	margin: 40px 0;
+}
+
+.level1:after {
+	content: "";
+	display: block;
+	margin: 0 auto;
+	background-color: #1d1e1f;
+	height: 2px;
+	width: 50px;
 }
 
 .level2 {
@@ -495,14 +505,14 @@ p {
 .sidebar {
 	background-color: #1d1e1f;
 	color: #fff;
-	width: 320px;
+	width: 260px;
 	position: absolute;
 	right: 0;
 	top: 0;
 	bottom: 0;
 	padding: 2.14286em;
-	-webkit-transform: translate3d(320px, 0, 0);
-	transform: translate3d(320px, 0, 0);
+	-webkit-transform: translate3d(260px, 0, 0);
+	transform: translate3d(260px, 0, 0);
 	-webkit-transition: -webkit-transform 200ms ease;
 	transition: transform 200ms ease;
 }
