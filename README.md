@@ -2,4 +2,4 @@ READ ME
 ======
 
 
-This is a countdown I made to learn Javascript. A pure exercise, that may contain lots of mistakes!
+A little app to track tasks. No database, localStorage only.
